@@ -12,6 +12,11 @@ declare global {
 
 export const authenticate = async (req: Request, res: Response, next: NextFunction) => {
 
+    // ✅ 🔥 CLAVE: permitir preflight
+    if (req.method === "OPTIONS") {
+        return next()
+    }
+
     const bearer = req.headers.authorization
 
     if (!bearer) {
