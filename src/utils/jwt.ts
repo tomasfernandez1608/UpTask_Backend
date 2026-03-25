@@ -1,13 +1,11 @@
-import jwt from 'jsonwebtoken'
-import Types from 'mongoose'
+import jwt from "jsonwebtoken";
 
-type UserPayload = {
-    id: Types.ObjectId
+type JWTPayload = {
+  id: string
 }
 
-export const generateJWT = (payload: UserPayload) => {
-    const token = jwt.sign(payload, process.env.JWT_SECRET, {
-        expiresIn: '180d'
-    })
-    return token
-}
+export const generateJWT = (payload: JWTPayload) => {
+  return jwt.sign(payload, process.env.JWT_SECRET!, {
+    expiresIn: "1d"
+  });
+};
